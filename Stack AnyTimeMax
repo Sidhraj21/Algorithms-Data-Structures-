@@ -1,0 +1,66 @@
+/* Find the max value in stack at any given time */
+input : 1 x -- push x onto the stack;
+input :2    -- pop the stack;
+input : 3 ---  print the max value in the stack at this moment;
+
+Idea : Since we can't check all the values in stack at any given time, create a stack
+where we can push an object which contains the value x (which we need to push into the
+stack) and also the max value till that push happened;
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class AnyTimeMax {
+
+    
+    public static void main(String[] args) {
+        
+        Scanner scan = new Scanner(System.in);
+        Stack<Mynode> emp = new Stack<Mynode>();
+        // number of queries
+         int num = scan.nextInt();
+         int max = 0;
+       
+        for(int i = 0; i < num; i++) {
+            int query = scan.nextInt();
+            if(query == 1) {
+                int x = scan.nextInt();
+                if(x > max) {
+                    max = x;
+                }
+                Mynode el = new Mynode(x, max);
+                emp.add(el);
+            } else if (query == 2) {
+                if(!emp.isEmpty()) {
+                      Mynode popped = emp.pop();
+                      if(popped.maxval == max) { 
+                    	  	if(!emp.isEmpty()) {
+                                 max = emp.peek().maxval;
+                          } else if(emp.isEmpty()) {
+                            	max = 0;
+                          }
+                }
+            } else {
+                    System.out.println("Stack is empty");
+              }
+            } else if (query == 3) {
+                System.out.println(max);
+            }
+           
+            
+        }
+            
+    }
+
+    private static class Mynode{
+        int val;
+        int maxval;
+        public Mynode(int value, int max) {
+            val = value;
+            maxval = max;
+        }
+    }
+}
