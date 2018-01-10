@@ -1,0 +1,58 @@
+Suppose there is a circle. There are  petrol pumps on that circle. Petrol pumps are numbered  to (both inclusive). 
+You have two pieces of information corresponding to each of the petrol pump: 
+(1) the amount of petrol that particular petrol pump will give, and (2) the distance from that petrol pump to 
+the next petrol pump.
+Initially, you have a tank of infinite capacity carrying no petrol. You can start the tour at any of the petrol pumps. 
+Calculate the first point from where the truck will be able to complete the circle. Consider that the truck will stop 
+at each of the petrol pumps. The truck will move one kilometer for each litre of the petrol.
+Output : An integer which will be the smallest index of the petrol pump from which we can start the tour.
+
+// the idea is to take an array twice the size of input. Enter elements at index i and i +N.
+// instead of storing the actual values in the array store the distance we can go(petrol - distance). If it is
+// negative from any index, discard it. If we can move N steps from any index, and the sum remains +ve then 
+// we can tour from that index.
+
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner scan = new Scanner(System.in);
+        int N = scan.nextInt();
+        int[] run = new int[2*N];
+        
+        for(int i = 0; i < N; i++) {
+            int petrol = scan.nextInt();
+            int dist = scan.nextInt();
+            run[i] = petrol - dist;
+            run[i + N] = petrol - dist;
+        }
+         
+       for(int i = 0; i < N; i++) {
+        //   System.out.println("This whole thing is for : " + run[i]);
+           int count = 0;
+           int sum = 0;
+           if(run[i] < 0) {
+               continue;
+           } else {
+           while (count < N && sum >= 0) {
+      //         System.out.println("run : " + run[i + count]);
+               sum = sum + run[i + count];
+       //        System.out.println("sum : " + sum);
+               count++;
+       //        System.out.println("count : " + count);
+           }
+            if(count == N && sum >= 0){
+                System.out.println(i);
+                break;
+            }   
+           }
+       }
+    }
+}
