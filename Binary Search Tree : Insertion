@@ -1,0 +1,50 @@
+/*You are given a pointer to the root of a binary search tree and a value to be inserted into the tree. 
+Insert this value into its appropriate position in the binary search tree and return the root of the updated binary tree. */
+
+
+/*IMPORTANT ::: Binary tree is different from Binary Search Tree. In Binary tree each node has 0,1 or 2 child.
+In Binary Search Tree, each node has 0,1,2 child, but the condition is that the left child is equal to or less
+than the parent node, and the right child is greater than the parent node.
+
+In this problem, we compare the given value with root data and decide to traverse right or left based on the condition 
+mentioned above. While each travering we check if the next node(right or left node, based on the condition)
+is null. If it is null we create a new node at that position with the value given. */
+
+/*In Linked List and Tree always save the head/root, to be returned later. */
+
+
+/* Node is defined as :
+ class Node 
+    int data;
+    Node left;
+    Node right;
+    
+    */
+
+static Node Insert(Node root,int value) {
+    Node savenode = root;
+    Node newnode = new Node();
+    newnode.data = value;
+    if(root == null){
+        return newnode;
+    }
+    while(true){
+        if(root.data > value){
+            if(root.left != null){
+                root = root.left;    
+            } else if (root.left == null){
+                root.left = newnode;
+                return savenode;
+            }
+            
+        } else if(root.data <= value) {
+            if(root.right != null){
+                root = root.right;
+        } else if(root.right == null){
+                root.right = newnode;
+                return savenode;
+            }
+       }
+          
+   }
+}
