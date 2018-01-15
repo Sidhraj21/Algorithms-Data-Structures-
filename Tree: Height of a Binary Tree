@@ -1,0 +1,31 @@
+The height of a binary tree is the number of edges between the tree's root and its furthest leaf.
+This means that a tree containing a single node has a height of 0.
+Complete the getHeight function so that it returns the height of a binary tree. This function has a parameter,root , which is a pointer to the root node of a binary tree. 
+Note -The Height of binary tree with single node is taken as zero.
+
+
+// using recursion. check if root is null or its child are null. in both condition return 0.
+Otherwise recursively check height of left and right subtree, return (max(left_height, right_height)) +1.
+
+
+/*
+    class Node 
+    	int data;
+    	Node left;
+    	Node right;
+	*/
+	static int height(Node root) {
+      	// Write your code here.
+       if(root == null) {
+           return 0;
+       } else if(root.left == null && root.right == null){
+               return 0;
+           }
+        else {
+           int lh = height(root.left);
+           int rh = height(root.right);
+           int h = Math.max(lh, rh) + 1;
+           return h;
+       }
+       
+    }
