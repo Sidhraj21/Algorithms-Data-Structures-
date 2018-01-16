@@ -1,0 +1,50 @@
+/* You are given pointer to the root of the binary search tree and two values v1 and v2. */
+/* You need to return the lowest common ancestor (LCA) of v1 and v2 in the binary search tree. */
+
+/* The idea is that if a node is the common ancestor of two nodes. Then since it is a binary search tree */
+/* the value at the common ancestor will be smaller or equal to the bigger of the two values and it will be */
+/*  greater than or equal to the smaller value. So for each node we check if its value is <= or >= to the two*/
+/*given values. If it is between them, return that node. */
+
+
+
+
+/* Node is defined as :
+ class Node 
+    int data;
+    Node left;
+    Node right;
+    
+    */
+
+static Node lca(Node root,int v1,int v2)
+    {
+    int small = 0;
+    int big = 0;
+    Node saveroot  = root;
+    if(v1 <= root.data && v2 >= root.data){
+        return root;
+    } else if (v1 >= root.data && v2 <= root.data) {
+        return root;
+    }
+       if(v1 >= v2){
+           small = v2;
+           big = v1;
+       } else {
+           small = v1;
+           big = v2;
+       }
+     while(true) {
+         if(root.data >= small) {
+             root = root.left;
+             if(root.data >= small && root.data <= big){
+                 return root;
+             }
+         } else if (root.data <= small) {
+             root = root.right;
+             if(root.data >= small && root.data <= big) {
+                 return root;
+             }
+         }
+     }
+    }
