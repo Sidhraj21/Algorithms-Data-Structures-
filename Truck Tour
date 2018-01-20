@@ -1,4 +1,4 @@
-Suppose there is a circle. There are  petrol pumps on that circle. Petrol pumps are numbered  to (both inclusive). 
+Suppose there is a circle. There are  petrol pumps on that circle. Petrol pumps are numbered 1 to N (both inclusive). 
 You have two pieces of information corresponding to each of the petrol pump: 
 (1) the amount of petrol that particular petrol pump will give, and (2) the distance from that petrol pump to 
 the next petrol pump.
@@ -35,18 +35,14 @@ public class Solution {
         }
          
        for(int i = 0; i < N; i++) {
-        //   System.out.println("This whole thing is for : " + run[i]);
            int count = 0;
            int sum = 0;
            if(run[i] < 0) {
                continue;
            } else {
            while (count < N && sum >= 0) {
-      //         System.out.println("run : " + run[i + count]);
                sum = sum + run[i + count];
-       //        System.out.println("sum : " + sum);
                count++;
-       //        System.out.println("count : " + count);
            }
             if(count == N && sum >= 0){
                 System.out.println(i);
