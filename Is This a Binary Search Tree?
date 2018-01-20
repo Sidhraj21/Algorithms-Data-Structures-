@@ -1,0 +1,41 @@
+Given the root node of a binary tree, can you determine if it's also a binary search tree?
+
+/* In a binary search tree, In-Order tree traversal returns elements in ascending order.*/
+/* So the idea is to do an inOrder tree traversal and store the data of nodes in an arraylist*/
+/*If the elements of the arraylist are in ascending order, then the binary tree is a binary search tree.*/
+
+The Node class is defined as follows:
+    class Node {
+        int data;
+        Node left;
+        Node right;
+     }
+*/
+    public ArrayList<Integer> inOrder(Node root, ArrayList<Integer> result) {
+        if(root.left != null){
+            inOrder(root.left, result);
+        }
+        result.add(root.data);
+       if(root.right != null) {
+            inOrder(root.right, result);
+        }
+       return result;
+    } 
+    boolean checkBST(Node root) {
+        if(root == null){
+            return true;
+        }
+        if(root.left == null && root.right == null){
+            return true;
+        }
+        boolean ans = true;
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        ArrayList<Integer> re2 = inOrder(root, result);
+        for(int i = 0; i < re2.size()-2; i++) {
+             if(re2.get(i) >= re2.get(i+1)){
+                  ans = false;
+                  return ans;
+            }
+        }
+        return ans;
+    }
