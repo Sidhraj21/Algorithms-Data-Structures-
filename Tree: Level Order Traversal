@@ -5,7 +5,7 @@ In level order traversal, we visit the nodes level by level from left to right.*
 /* Level Order Tree Traversal is infact BFS(Breadth First Search). The idea is to create a queue and arraylist.
 Store the root in the queue. While the queue is not empty, we dequeue the element from the queue, add its left and right 
 child to the queue, and before printing we check if the item has already been printed(visited). If the item is not present
-in the array, then we print it and then add it to the arraylist. if the item is present in the arraylist, we dont print it.*/ 
+in the arraylist, then we print it and then add it to the arraylist. if the item is present in the arraylist, we dont print it.*/ 
 
 
 
