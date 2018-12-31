@@ -1,0 +1,19 @@
+/*********
+Given a string, return recursively a "cleaned" string where adjacent chars that are the same have been reduced to a single char. So "yyzzza" yields "yza".
+
+
+stringClean("yyzzza") → "yza"
+stringClean("abbbcdd") → "abcd"
+stringClean("Hello") → "Helo"
+*********/
+public int countAbc(String str) {
+  int count = 0;
+  if(str.length() < 3){
+    return count;
+  }
+  String curr = str.substring(0,3); 
+  if(curr.equals("abc") || curr.equals("aba")){
+    count++;
+  }
+  return count + countAbc(str.substring(1));
+}
