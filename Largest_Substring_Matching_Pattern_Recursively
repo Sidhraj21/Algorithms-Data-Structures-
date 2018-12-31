@@ -1,0 +1,34 @@
+/**********
+Given a string and a non-empty substring sub, compute recursively the largest
+substring which starts and ends with sub and return its length.
+
+
+strDist("catcowcat", "cat") → 9
+strDist("catcowcat", "cow") → 3
+strDist("cccatcowcatxx", "cat") → 9
+
+**************/
+
+public int strDist(String str, String sub) {
+  
+  if(str.length()==0 || sub.length()==0 || sub.length() > str.length()){
+    return 0;
+  }
+  
+  int len_pat = sub.length();
+  String start = str.substring(0,len_pat);
+  String end = str.substring((str.length()-len_pat));
+  if(start.equals(sub) && end.equals(sub)){
+    return str.length();
+  }
+  if(str.length()==1 && str!=sub){
+    return 0;
+  }
+  if(!start.equals(sub)){
+    str = str.substring(1);
+  }
+  if(!end.equals(sub)){
+    str = str.substring(0, str.length()-1);
+  }
+  return strDist(str, sub);
+}
