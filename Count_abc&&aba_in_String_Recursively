@@ -1,0 +1,18 @@
+/*****
+Count recursively the total number of "abc" and "aba" substrings that appear in the given string.
+
+
+countAbc("abc") → 1
+countAbc("abcxxabc") → 2
+countAbc("abaxxaba") → 2
+******/
+public int array11(int[] nums, int index) {
+  int count = 0; 
+  if(nums.length == 0 ||nums.length == index){
+     return count;
+  }
+  if(nums[index] == 11){
+    count++;
+  }
+  return count + array11(nums, index+1);
+}
