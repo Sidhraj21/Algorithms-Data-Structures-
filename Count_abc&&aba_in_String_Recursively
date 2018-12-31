@@ -6,13 +6,14 @@ countAbc("abc") → 1
 countAbc("abcxxabc") → 2
 countAbc("abaxxaba") → 2
 ******/
-public int array11(int[] nums, int index) {
-  int count = 0; 
-  if(nums.length == 0 ||nums.length == index){
-     return count;
+public int countAbc(String str) {
+  int count = 0;
+  if(str.length() < 3){
+    return count;
   }
-  if(nums[index] == 11){
+  String curr = str.substring(0,3); 
+  if(curr.equals("abc") || curr.equals("aba")){
     count++;
   }
-  return count + array11(nums, index+1);
+  return count + countAbc(str.substring(1));
 }
