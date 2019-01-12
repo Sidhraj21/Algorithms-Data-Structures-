@@ -1,0 +1,64 @@
+Given an array nums of n integers and an integer target, 
+find three integers in nums such that the sum is closest to target. 
+Return the sum of the three integers. You may assume that each input would have exactly one solution.
+
+Example:
+
+Given array nums = [-1, 2, 1, -4], and target = 1.
+
+The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+**********************************************************************************************************
+
+Brute Force :::
+
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        int sum = 0;
+        int diff = Integer.MAX_VALUE;
+        for(int i = 0; i < nums.length-2; i++){
+            for(int j = i+1; j < nums.length-1; j++){
+                for(int k = j+1; k < nums.length; k++) {
+                    int curr_sum = nums[i] + nums[j] + nums[k];
+                    int curr_diff = Math.abs(curr_sum - target);
+                    if(curr_diff < diff){
+                        sum = curr_sum;
+                        diff = curr_diff;
+                    }
+                }
+            } 
+        }
+    
+        return sum;
+   }
+}
+**************************************************************************************************************
+Sort the array. In two sum problem we have two pointers one at start and one at end. We take the same approach.
+For each number in array we take two pointers.. one starting at next number and another at the end. If the sum of
+the three is greater than given target, then decrease pointer at end, if sum is less than target increase the lower pointer.
+At each step calculate the difference of sum from target. Return the minimum.
+
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        int sum = 0;
+        int diff = Integer.MAX_VALUE;
+        Arrays.sort(nums);
+        for(int i = 0; i < nums.length-2; i++){
+            int lo = i + 1;
+            int hi = nums.length -1;
+            while(lo < hi) {
+                int curr_sum = nums[i] + nums[lo] + nums[hi];
+                int curr_diff = Math.abs(curr_sum - target);
+                if(curr_diff < diff){
+                    diff = curr_diff;
+                    sum = curr_sum;
+                }
+                if(curr_sum > target){
+                    hi--;
+                }else{
+                    lo++;
+                }
+            }
+        }
+        return sum;
+   }
+}
